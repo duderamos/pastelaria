@@ -1,0 +1,22 @@
+#cloud-config
+ssh_authorized_keys:
+  - ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIEnexPeMn14bcRDgz0keH4HvOG4fJh/7TDngH1EOgqSu
+
+package_update: true
+package_upgrade: true
+apt:
+  conf: |
+    APT::Install-Recommends "false";
+    APT::Install-Suggests "false";
+packages:
+  - qemu-guest-agent
+runcmd:
+  - systemctl enable qemu-guest-agent
+  - systemctl start qemu-guest-agent
+
+power_state:
+ delay: "now"
+ mode: poweroff
+ message: Bye Bye
+ timeout: 30
+ condition: True
