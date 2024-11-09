@@ -1,0 +1,7 @@
+services:
+  cloud-utils-localds:
+    image: duderamos/cloud-utils-localds
+    build:
+      context: .
+    volumes:
+      - .:/work
